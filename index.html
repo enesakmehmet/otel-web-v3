@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LuxStay Hotel | Rezervasyon</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-hotel"></i> LuxStay
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#rooms">Odalar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services">Hizmetler</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">İletişim</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="userDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                <i class="fas fa-user-circle"></i>
+                <span id="userName">Hesabım</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li id="guestMenu">
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#loginModal"
+                    >Giriş Yap</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#registerModal"
+                    >Üye Ol</a
+                  >
+                </li>
+                <li id="userMenu" style="display: none">
+                  <a class="dropdown-item" href="#" onclick="showProfile()"
+                    >Profilim</a
+                  >
+                  <a class="dropdown-item" href="#" onclick="showBookings()"
+                    >Rezervasyonlarım</a
+                  >
+                  <a class="dropdown-item" href="#" onclick="showPoints()"
+                    >Puan Durumum</a
+                  >
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" onclick="logout()"
+                    >Çıkış Yap</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h1>Lüks ve Konforun Adresi</h1>
+            <p>Unutulmaz bir tatil deneyimi için hemen rezervasyon yapın.</p>
+          </div>
+          <div class="col-md-6">
+            <div class="card booking-card">
+              <div class="card-body">
+                <h5 class="card-title">Rezervasyon Yap</h5>
+                <form id="reservationForm">
+                  <div class="mb-3">
+                    <label class="form-label">Giriş Tarihi</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="checkIn"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Çıkış Tarihi</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="checkOut"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Kişi Sayısı</label>
+                    <select class="form-select" id="guests" required>
+                      <option value="1">1 Kişi</option>
+                      <option value="2">2 Kişi</option>
+                      <option value="3">3 Kişi</option>
+                      <option value="4">4 Kişi</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Oda Tipi</label>
+                    <select class="form-select" id="roomType" required>
+                      <option value="standard">Standart Oda</option>
+                      <option value="deluxe">Deluxe Oda</option>
+                      <option value="suite">Suit Oda</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">
+                    Rezervasyon Yap
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Rooms Section -->
+    <section id="rooms" class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-4">Odalarımız</h2>
+        <div class="row" id="roomsContainer">
+          <!-- Odalar JavaScript ile eklenecek -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-4">Hizmetlerimiz</h2>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <div class="service-card">
+              <i class="fas fa-swimming-pool"></i>
+              <h4>Havuz</h4>
+              <p>Açık ve kapalı yüzme havuzları</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="service-card">
+              <i class="fas fa-spa"></i>
+              <h4>SPA</h4>
+              <p>Masaj ve wellness hizmetleri</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="service-card">
+              <i class="fas fa-utensils"></i>
+              <h4>Restoran</h4>
+              <p>Dünya mutfağından lezzetler</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reservations Modal -->
+    <div class="modal fade" id="reservationsModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Rezervasyonlarım</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="reservationsList">
+              <!-- Rezervasyonlar JavaScript ile eklenecek -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Move all other content sections here (events-calendar, restaurant-section, etc) -->
+
+    <div class="events-calendar mb-4">
+      <h3>Etkinlik Takvimi</h3>
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-date">15 Mart</div>
+          <h5>Caz Gecesi</h5>
+          <p>Otel lobisinde canlı caz performansı</p>
+          <button class="btn btn-sm btn-outline-primary">Detaylar</button>
+        </div>
+        <!-- Diğer etkinlikler -->
+      </div>
+    </div>
+
+    <div class="restaurant-section">
+      <h3>Restoran Rezervasyonu</h3>
+      <form id="restaurantForm">
+        <div class="row">
+          <div class="col-md-4">
+            <input type="date" class="form-control" required />
+          </div>
+          <div class="col-md-4">
+            <select class="form-select" required>
+              <option value="">Saat Seçin</option>
+              <option>19:00</option>
+              <option>20:00</option>
+              <option>21:00</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <select class="form-select" required>
+              <option value="">Kişi Sayısı</option>
+              <option>2 Kişi</option>
+              <option>4 Kişi</option>
+              <option>6 Kişi</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">
+          Rezervasyon Yap
+        </button>
+      </form>
+    </div>
+
+    <div class="spa-booking">
+      <h3>Spa & Wellness</h3>
+      <div class="spa-services">
+        <div class="service-card">
+          <img
+            src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874"
+            alt="Klasik Masaj"
+            class="service-image"
+          />
+          <h5>Klasik Masaj</h5>
+          <p>60 dakika - 500 TL</p>
+          <button class="btn btn-primary" onclick="bookSpaService('massage')">
+            Randevu Al
+          </button>
+        </div>
+        <!-- Diğer spa hizmetleri -->
+        <div class="service-card">
+          <img
+            src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8"
+            alt="Aromaterapi"
+            class="service-image"
+          />
+          <h5>Aromaterapi</h5>
+          <p>90 dakika - 750 TL</p>
+          <button
+            class="btn btn-primary"
+            onclick="bookSpaService('aromatherapy')"
+          >
+            Randevu Al
+          </button>
+        </div>
+        <div class="service-card">
+          <img
+            src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1"
+            alt="Taş Masajı"
+            class="service-image"
+          />
+          <h5>Taş Masajı</h5>
+          <p>75 dakika - 650 TL</p>
+          <button class="btn btn-primary" onclick="bookSpaService('stone')">
+            Randevu Al
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="transfer-service">
+      <h3>Transfer Hizmeti</h3>
+      <form id="transferForm">
+        <select class="form-select mb-3">
+          <option>Havalimanından Otele</option>
+          <option>Otelden Havalimanına</option>
+        </select>
+        <div class="row">
+          <div class="col-md-6">
+            <input type="date" class="form-control" placeholder="Tarih" />
+          </div>
+          <div class="col-md-6">
+            <input type="time" class="form-control" placeholder="Saat" />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">
+          Transfer Talep Et
+        </button>
+      </form>
+    </div>
+
+    <div class="room-comparison mb-4">
+      <h3>Oda Karşılaştırma</h3>
+      <div class="row">
+        <div class="col-md-4">
+          <select class="form-select" id="room1">
+            <option value="">Oda 1 Seçin</option>
+            <option value="standard">Standart Oda</option>
+            <option value="deluxe">Deluxe Oda</option>
+            <option value="suite">Suit Oda</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <select class="form-select" id="room2">
+            <option value="">Oda 2 Seçin</option>
+            <option value="standard">Standart Oda</option>
+            <option value="deluxe">Deluxe Oda</option>
+            <option value="suite">Suit Oda</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-primary w-100" onclick="compareRooms()">
+            Karşılaştır
+          </button>
+        </div>
+      </div>
+      <div id="comparisonResult" class="mt-3"></div>
+    </div>
+
+    <div class="special-packages mb-4">
+      <h3>Özel Paketler</h3>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="package-card">
+            <div class="badge bg-danger">%20 İndirim</div>
+            <h4>Balayı Paketi</h4>
+            <ul>
+              <li>2 Gece Suit Oda Konaklaması</li>
+              <li>Özel Akşam Yemeği</li>
+              <li>SPA Kullanımı</li>
+              <li>Şampanya İkramı</li>
+            </ul>
+            <div class="price">
+              <span class="old-price">3000 TL</span>
+              <span class="new-price">2400 TL</span>
+            </div>
+            <button class="btn btn-primary w-100">Rezervasyon Yap</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="virtual-concierge mb-4">
+      <h3>Sanal Concierge</h3>
+      <div class="concierge-services">
+        <button class="service-btn" onclick="requestService('room-service')">
+          <i class="fas fa-utensils"></i>
+          Oda Servisi
+        </button>
+        <button class="service-btn" onclick="requestService('housekeeping')">
+          <i class="fas fa-broom"></i>
+          Oda Temizliği
+        </button>
+        <button class="service-btn" onclick="requestService('maintenance')">
+          <i class="fas fa-wrench"></i>
+          Teknik Destek
+        </button>
+        <button class="service-btn" onclick="requestService('wake-up')">
+          <i class="fas fa-clock"></i>
+          Uyandırma Servisi
+        </button>
+      </div>
+    </div>
+
+    <!-- Giriş Modal -->
+    <div class="modal fade" id="loginModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Giriş Yap</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="loginForm">
+              <div class="mb-3">
+                <label class="form-label">E-posta</label>
+                <input type="email" class="form-control" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Şifre</label>
+                <input type="password" class="form-control" required />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Giriş Yap
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ödeme Modal -->
+    <div class="modal fade" id="paymentModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Ödeme</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="payment-summary mb-4">
+              <h6>Rezervasyon Özeti</h6>
+              <div id="bookingSummary"></div>
+              <hr />
+              <div class="d-flex justify-content-between">
+                <strong>Toplam Tutar:</strong>
+                <span id="totalAmount"></span>
+              </div>
+            </div>
+            <form id="paymentForm">
+              <div class="mb-3">
+                <label class="form-label">Kart Üzerindeki İsim</label>
+                <input type="text" class="form-control" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Kart Numarası</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cardNumber"
+                  required
+                />
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Son Kullanma Tarihi</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="AA/YY"
+                    required
+                  />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">CVV</label>
+                  <input type="text" class="form-control" required />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Ödemeyi Tamamla
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>LuxStay Hotel</h5>
+            <p>Lüks ve konforun buluşma noktası</p>
+          </div>
+          <div class="col-md-4">
+            <h5>İletişim</h5>
+            <p><i class="fas fa-map-marker-alt"></i> Sahil Caddesi No:123</p>
+            <p><i class="fas fa-phone"></i> +90 123 456 7890</p>
+            <p><i class="fas fa-envelope"></i> info@luxstay.com</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Sosyal Medya</h5>
+            <div class="social-links">
+              <a href="#" class="me-3"><i class="fab fa-facebook"></i></a>
+              <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+
+    <div class="chat-widget" id="chatWidget">
+      <div class="chat-header">
+        <h5>Canlı Destek</h5>
+        <button class="close-chat">×</button>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <!-- Mesajlar buraya gelecek -->
+      </div>
+      <div class="chat-input">
+        <input type="text" placeholder="Mesajınızı yazın..." />
+        <button><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Standart Oda - LuxStay Hotel</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="fas fa-hotel"></i> LuxStay
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#rooms">Odalar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#services">Hizmetler</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#contact">İletişim</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Oda Detay Section -->
+    <section class="room-detail-section pt-5">
+      <div class="container mt-5">
+        <!-- Resim Galerisi -->
+        <div class="row mb-4">
+          <div class="col-md-8">
+            <div
+              id="roomGallery"
+              class="carousel slide"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    src="https://images.unsplash.com/photo-1611892440504-42a792e24d32"
+                    class="d-block w-100"
+                    alt="Standart Oda"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1587985064135-0366536eab42"
+                    class="d-block w-100"
+                    alt="Standart Oda Banyo"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1582719508461-905c673771fd"
+                    class="d-block w-100"
+                    alt="Standart Oda Manzara"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#roomGallery"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#roomGallery"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon"></span>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="room-summary card">
+              <div class="card-body">
+                <h2>Standart Oda</h2>
+                <p class="text-muted">Konforlu ve şık standart odalarımız</p>
+                <hr />
+                <div class="d-flex justify-content-between mb-3">
+                  <span><i class="fas fa-user"></i> 2 Kişilik</span>
+                  <span><i class="fas fa-bed"></i> 1 Çift Kişilik Yatak</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                  <span><i class="fas fa-vector-square"></i> 25m²</span>
+                  <span><i class="fas fa-mountain"></i> Bahçe Manzaralı</span>
+                </div>
+                <hr />
+                <h3 class="text-primary mb-3">500 TL / Gece</h3>
+                <button
+                  class="btn btn-primary w-100"
+                  data-bs-toggle="modal"
+                  data-bs-target="#reservationModal"
+                >
+                  Rezervasyon Yap
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oda Özellikleri -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <h3 class="mb-4">Oda Özellikleri</h3>
+                <div class="row">
+                  <div class="col-md-4">
+                    <h5>Yatak & Konfor</h5>
+                    <ul class="list-unstyled">
+                      <li>
+                        <i class="fas fa-check text-success"></i> Çift Kişilik
+                        Yatak (160x200)
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-success"></i> Premium
+                        Yastıklar
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-success"></i> Kaliteli
+                        Nevresim Takımı
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-success"></i> Extra
+                        Battaniye
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                    <h5>Teknoloji</h5>
+                    <ul class="list-unstyled">
+                      <li>
+                        <i class="fas fa-check text-success"></i> Ücretsiz Wi-Fi
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-success"></i> 42" LCD TV
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-success"></i> Uydu Kanalları
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-success"></i> Dijital Kasa
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                    <h5>Banyo</h5>
+                    <ul class="list-unstyled">
+                      <li><i class="fas fa-check text-success"></i> Duş</li>
+                      <li>
+                        <i class="fas fa-check text-success"></i> Saç Kurutma
+                        Makinesi
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-success"></i> Premium Banyo
+                        Ürünleri
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-success"></i> Bornoz ve
+                        Terlik
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Misafir Yorumları -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <h3 class="mb-4">Misafir Yorumları</h3>
+                <div class="reviews-container">
+                  <!-- Yorumlar JavaScript ile eklenecek -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+   <!-- Sanal Tur Bölümü -->
+<div class="virtual-tour-section mb-4">
+  <h3>Sanal Tur</h3>
+  <div class="ratio ratio-16x9">
+    <!-- Google Maps Street View Embed -->
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!4v1234567890!6m8!1m7!1sCAoSLEFGMVFpcE9ERHhETWFaWVZzNUY3UW1IYmRrd0tzWENKN3Y4UzFSY0RFWE1O!2m2!1d41.0082!2d28.9784!3f0!4f0!5f0.7"
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  
+  <!-- Alternatif olarak 360 derece görüntüleyici -->
+  <div id="panorama" style="width:100%; height:400px;" class="mt-3"></div>
+</div>
+
+<!-- 360 görüntüleyici için Pannellum kütüphanesi -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+<script>
+pannellum.viewer('panorama', {
+    "type": "equirectangular",
+    "panorama": "path/to/your/360-image.jpg", // 360 derece fotoğrafınızın yolu
+    "autoLoad": true,
+    "autoRotate": -2
+});
+</script>
+
+    <!-- Rezervasyon Modal -->
+    <div class="modal fade" id="reservationModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Rezervasyon Yap</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="reservationForm">
+              <div class="mb-3">
+                <label class="form-label">Giriş Tarihi</label>
+                <input type="date" class="form-control" id="checkIn" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Çıkış Tarihi</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="checkOut"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Kişi Sayısı</label>
+                <select class="form-select" id="guests" required>
+                  <option value="1">1 Kişi</option>
+                  <option value="2" selected>2 Kişi</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Rezervasyon Yap
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="room-detail.js"></script>
+  </body>
+</html>
